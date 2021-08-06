@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import re
+from Levenshtein import distance
 # import sys
 
 
@@ -40,12 +41,17 @@ def change_password(old_password, new_password):
     percentage = (numeric_count / len(new_password)) * 100
     if percentage >= 50:
         return False
-
+    # checking if 80% match with previous
+    dist = distance(old_password, new_password)
+    max_len = max(len(old_password), len(new_password))
+    percentage = (1 - (dist/max_len)) * 100
+    if percentage >= 80:
+        return False
     return True
 
 
 if __name__ == "__main__":
-    saved_old_password = "old_password"
+    saved_old_password = "abcdefghijABChgjgjh35!@#EFGHIJ"
     # test_password = sys.argv[1]
     test_password = "abcdefghijABCD12335!@#EFGHIJ"
     print(change_password(saved_old_password, test_password))
