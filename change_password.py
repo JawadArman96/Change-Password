@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import re
 from Levenshtein import distance
-# import sys
+import sys
 
 
 saved_password = "abcdefgABCDEFG012345*"
@@ -81,10 +81,6 @@ def request_change(req_password):
         saved_password = req_password
         print("Password change successfully")
 
-# if __name__ == "__main__":
-#     saved_old_password = "*34ABCbo7i89CDEFu&PSQ012"
-#     # test_password = sys.argv[1]
-#     test_password = "*34aBCbo7i89CdEGu&PSQ0"
-#     # print(change_password(saved_old_password, test_password))
-#
-#     print(check_password("abcdefABCDEF012345*"))
+
+if __name__ == "__main__":
+    print(change_password(saved_password, sys.argv[1]))
