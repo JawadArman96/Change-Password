@@ -4,6 +4,9 @@ from Levenshtein import distance
 # import sys
 
 
+saved_password = "abcdefgABCDEFG012345*"
+
+
 def change_password(old_password, new_password):
     # ###### Checking with previous password ############
     if new_password == old_password:  # checking if password
@@ -34,7 +37,6 @@ def check_password(password):
     if not match:  # checking alphanumeric,digits,
         print("should be 18 alphanumeric characters, atleast 1 uppercase,"
               "atleast 1 lowercase, 1 special characters")
-        print(password)
         return False  # special characters and length
     # checking repetition
     numeric_count = 0
@@ -71,6 +73,13 @@ def check_password(password):
         return False
     return True
 
+
+def request_change(req_password):
+    global saved_password
+    bool_val = change_password(saved_password, req_password)
+    if bool_val:
+        saved_password = req_password
+        print("Password change successfully")
 
 # if __name__ == "__main__":
 #     saved_old_password = "*34ABCbo7i89CDEFu&PSQ012"
